@@ -47,7 +47,8 @@
     max-width: 900px; margin: 0 auto; padding: 16px 24px;
     display: flex; align-items: center; justify-content: space-between;
   }
-  .nav-logo { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: -0.2px; }
+  .nav-logo { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: -0.2px; }
+  .nav-logo img { height: 26px; width: auto; display: block; }
   .nav-logo .dot { color: var(--indigo); }
   .nav-links { display: flex; gap: 28px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
   .nav-links a:hover { color: var(--ink); }
@@ -204,7 +205,7 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">sharjeel<span class="dot">.</span>dev</div>
+    <div class="nav-logo"><img src="logo.png" alt="Sharjeel logo" />sharjeel<span class="dot">.</span>dev</div>
     <div class="nav-links">
       <a href="#work">work</a>
       <a href="#stack">stack</a>
