@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sharjeel — Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F6F2;
+    --paper-2: #FFFFFF;
+    --ink: #14171C;
+    --muted: #6B7280;
+    --muted-2: #9A9F8C;
+    --line: #E4E2DC;
+    --indigo: #4338CA;
+    --indigo-dim: #EEF0FD;
+    --amber: #B4790A;
+    --amber-dim: #FBF1DD;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  ::selection { background: var(--indigo); color: #fff; }
+  :focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(247,246,242,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 900px; margin: 0 auto; padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: -0.2px; }
+  .nav-logo .dot { color: var(--indigo); }
+  .nav-links { display: flex; gap: 28px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 14px; border-radius: 6px;
+  }
+  .nav-cta:hover { background: var(--indigo); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* ===== HERO ===== */
+  .hero { padding: 64px 0 56px; }
+  .status-line {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; color: var(--muted);
+    background: var(--paper-2); border: 1px solid var(--line);
+    padding: 6px 12px; border-radius: 999px; margin-bottom: 28px;
+  }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #16A34A;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: var(--mono); font-weight: 700;
+    font-size: clamp(32px, 5.2vw, 54px);
+    line-height: 1.12; letter-spacing: -1px;
+    max-width: 780px; margin-bottom: 22px;
+  }
+  .hero h1 .cursor {
+    display: inline-block; width: 0.5ch; height: 0.85em;
+    background: var(--indigo); margin-left: 4px;
+    animation: blink 1.1s step-end infinite; vertical-align: -0.1em;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero h1 .accent { color: var(--indigo); }
+
+  .hero p {
+    font-size: 17px; color: var(--muted); max-width: 560px;
+    margin-bottom: 34px; line-height: 1.65;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 46px; }
+  .btn-primary, .btn-secondary {
+    font-family: var(--mono); font-size: 13.5px; font-weight: 600;
+    padding: 13px 22px; border-radius: 8px; display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.15s;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--indigo); transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+  .btn-secondary:hover { border-color: var(--ink); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  }
+  .hero-stat { background: var(--paper-2); padding: 16px 14px; }
+  .hero-stat .n { font-family: var(--mono); font-weight: 700; font-size: 21px; color: var(--indigo); }
+  .hero-stat .l { font-size: 11px; color: var(--muted); margin-top: 3px; letter-spacing: 0.2px; }
+  @media (max-width: 640px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ===== SECTION SHARED ===== */
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--amber);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before { content: ''; width: 16px; height: 1.5px; background: var(--amber); }
+  .section-title { font-family: var(--mono); font-weight: 700; font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.5px; margin-bottom: 14px; }
+  .section-sub { color: var(--muted); font-size: 15px; max-width: 560px; margin-bottom: 40px; line-height: 1.6; }
+
+  /* ===== CHANGELOG / PROJECTS ===== */
+  .changelog { display: flex; flex-direction: column; gap: 20px; }
+  .release {
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 30px; transition: border-color 0.15s, transform 0.15s;
+  }
+  .release:hover { border-color: #CBD0DC; transform: translateY(-2px); }
+  .release-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px; flex-wrap: wrap; }
+  .release-version {
+    font-family: var(--mono); font-size: 12.5px; font-weight: 700; color: var(--indigo);
+    background: var(--indigo-dim); padding: 4px 10px; border-radius: 6px; flex-shrink: 0;
+  }
+  .release-status {
+    font-family: var(--mono); font-size: 11px; font-weight: 600; color: #15803D;
+    background: #EAFBF1; padding: 4px 10px; border-radius: 6px;
+  }
+  .release-title { font-family: var(--mono); font-weight: 700; font-size: 19px; margin: 12px 0 8px; }
+  .release-desc { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin-bottom: 18px; max-width: 620px; }
+  .release-log { list-style: none; margin-bottom: 18px; }
+  .release-log li {
+    font-size: 13.5px; color: var(--ink); padding: 6px 0 6px 22px; position: relative; line-height: 1.5;
+  }
+  .release-log li::before {
+    content: '+'; position: absolute; left: 0; top: 6px;
+    font-family: var(--mono); color: var(--amber); font-weight: 700;
+  }
+  .release-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-pill {
+    font-family: var(--mono); font-size: 11.5px; color: var(--muted);
+    background: var(--paper); border: 1px solid var(--line); padding: 4px 10px; border-radius: 6px;
+  }
+
+  /* ===== ARCHITECTURE / STACK ===== */
+  .arch-stack { display: flex; flex-direction: column; gap: 2px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .arch-layer {
+    background: var(--paper-2); padding: 20px 24px;
+    display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: center;
+  }
+  .arch-layer + .arch-layer { border-top: 1px solid var(--line); }
+  .arch-label { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.5px; }
+  .arch-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .arch-item { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink); background: var(--paper); border: 1px solid var(--line); padding: 6px 12px; border-radius: 7px; }
+  @media (max-width: 640px) { .arch-layer { grid-template-columns: 1fr; gap: 10px; } }
+
+  /* ===== SERVICES ===== */
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .service-card { background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  .service-num { font-family: var(--mono); font-size: 11px; color: var(--amber); font-weight: 700; margin-bottom: 12px; }
+  .service-card h3 { font-family: var(--mono); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .service-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+
+  /* ===== CONTACT ===== */
+  .contact-box {
+    background: var(--ink); color: var(--paper); border-radius: 16px; padding: 48px 40px;
+    position: relative; overflow: hidden;
+  }
+  .contact-box::before {
+    content: ''; position: absolute; top: -80px; right: -80px; width: 220px; height: 220px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(67,56,202,0.35), transparent 70%);
+  }
+  .contact-eyebrow { font-family: var(--mono); font-size: 12px; color: #A5B4FC; margin-bottom: 14px; letter-spacing: 0.5px; }
+  .contact-box h2 { font-family: var(--mono); font-size: clamp(22px, 3.2vw, 30px); font-weight: 700; margin-bottom: 14px; letter-spacing: -0.5px; }
+  .contact-box p { color: #A0A6B5; font-size: 15px; max-width: 460px; margin-bottom: 30px; line-height: 1.6; }
+  .contact-methods { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .contact-method {
+    font-family: var(--mono); font-size: 13.5px; font-weight: 600;
+    background: #fff; color: var(--ink); padding: 13px 22px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 8px; transition: transform 0.15s;
+  }
+  .contact-method:hover { transform: translateY(-2px); }
+  .contact-method.ghost { background: transparent; color: #fff; border: 1.5px solid #363B47; }
+
+  footer { padding: 32px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-inner span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">sharjeel<span class="dot">.</span>dev</div>
+    <div class="nav-links">
+      <a href="#work">work</a>
+      <a href="#stack">stack</a>
+      <a href="#services">services</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top: none;">
+    <div class="status-line">
+      <span class="status-dot"></span>
+      Available for new projects
+    </div>
+    <h1>I build the whole stack —<br>from database to <span class="accent">deploy.</span><span class="cursor"></span></h1>
+    <p>Full-stack developer based in the UAE. I design, build, and ship production SaaS platforms — multi-tenant architecture, payment integrations, and third-party APIs — for founders who need a working product, not a prototype.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">See what I've shipped →</a>
+      <a href="#contact" class="btn-secondary">Start a project</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="n">3</div><div class="l">Products shipped</div></div>
+      <div class="hero-stat"><div class="n">5+</div><div class="l">APIs integrated</div></div>
+      <div class="hero-stat"><div class="n">1</div><div class="l">Person, full stack</div></div>
+      <div class="hero-stat"><div class="n">UAE</div><div class="l">Based, remote-ready</div></div>
+    </div>
+  </section>
+
+  <!-- WORK / CHANGELOG -->
+  <section id="work">
+    <div class="eyebrow">Shipped work</div>
+    <h2 class="section-title">A changelog, not a portfolio.</h2>
+    <p class="section-sub">Three production systems, built end-to-end — architecture, integrations, and deployment. Real businesses, real payments, real users.</p>
+
+    <div class="changelog">
+
+      <div class="release">
+        <div class="release-head">
+          <span class="release-version">v1.0</span>
+          <span class="release-status">● live in production</span>
+        </div>
+        <div class="release-title">Travel Advisers Visa Portal</div>
+        <p class="release-desc">A customer-facing visa application platform for a UAE travel agency — document upload, application tracking, payment, and travel insurance in one flow.</p>
+        <ul class="release-log">
+          <li>Built a 4-step application flow with a live status timeline customers can track</li>
+          <li>Integrated hosted checkout for card payments, with automatic invoice generation on success</li>
+          <li>Connected a third-party insurance provider's API for real-time quotes and instant policy issuance</li>
+          <li>Wired up transactional email for receipts, status updates, and policy documents</li>
+        </ul>
+        <div class="release-stack">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">Payment Gateway API</span>
+          <span class="stack-pill">Resend</span>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-head">
+          <span class="release-version">v1.1</span>
+          <span class="release-status">● live in production</span>
+        </div>
+        <div class="release-title">LetrexAI</div>
+        <p class="release-desc">A multi-tenant accounting SaaS purpose-built for travel agencies — VAT-ready invoicing, credit card tracking, and an AI that reads bank statements so no one has to type them in by hand.</p>
+        <ul class="release-log">
+          <li>Designed a multi-tenant architecture with organization-level data isolation and row-level security</li>
+          <li>Built an AI-powered bank statement parser that turns PDFs and screenshots into categorized transactions</li>
+          <li>Shipped role-based access control separating admin and staff permissions across every page</li>
+          <li>Integrated subscription billing with plan-based feature gating</li>
+        </ul>
+        <div class="release-stack">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">Stripe</span>
+          <span class="stack-pill">Claude API</span>
+        </div>
+      </div>
+
+      <div class="release">
+        <div class="release-head">
+          <span class="release-version">v1.2</span>
+          <span class="release-status">● live in production</span>
+        </div>
+        <div class="release-title">Unfiltered</div>
+        <p class="release-desc">An invite-only dating app with real-time chat, moderation tooling, and a released Android build — a different domain, same end-to-end build.</p>
+        <ul class="release-log">
+          <li>Built real-time messaging with blocking, rewind, and profile-viewing from chat</li>
+          <li>Shipped admin moderation tools — suspend, reject, and full account-deletion with cascade cleanup</li>
+          <li>Packaged the web app as a PWA and released it to Google Play Closed Testing</li>
+          <li>Automated a 60-day trial period for new approved users</li>
+        </ul>
+        <div class="release-stack">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">PWA</span>
+          <span class="stack-pill">Android</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STACK / ARCHITECTURE -->
+  <section id="stack">
+    <div class="eyebrow">How it's built</div>
+    <h2 class="section-title">The stack I ship with.</h2>
+    <p class="section-sub">Every layer, one person. No handoffs between a "frontend person" and a "backend person" — I own the whole system, so nothing gets lost in translation.</p>
+
+    <div class="arch-stack">
+      <div class="arch-layer">
+        <div class="arch-label">Frontend</div>
+        <div class="arch-items">
+          <span class="arch-item">Next.js</span>
+          <span class="arch-item">React</span>
+          <span class="arch-item">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Backend</div>
+        <div class="arch-items">
+          <span class="arch-item">API Routes</span>
+          <span class="arch-item">Server Actions</span>
+          <span class="arch-item">Node.js</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Database</div>
+        <div class="arch-items">
+          <span class="arch-item">Supabase / Postgres</span>
+          <span class="arch-item">Row-Level Security</span>
+          <span class="arch-item">Storage</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Integrations</div>
+        <div class="arch-items">
+          <span class="arch-item">Payment Gateways</span>
+          <span class="arch-item">Transactional Email</span>
+          <span class="arch-item">AI / LLM APIs</span>
+          <span class="arch-item">Third-Party REST APIs</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Infra</div>
+        <div class="arch-items">
+          <span class="arch-item">Vercel</span>
+          <span class="arch-item">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="eyebrow">What I take on</div>
+    <h2 class="section-title">Where I'm most useful.</h2>
+    <p class="section-sub">Best fit for founders who have a real business problem and need working software, fast — not a mockup to hand off to someone else.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Full-stack SaaS builds</h3>
+        <p>From a blank repo to a live product — data model, auth, UI, and deployment, built as one coherent system.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Multi-tenant architecture</h3>
+        <p>Organizations, roles, and permissions done properly — data isolation you can trust as customers scale up.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Payment & API integrations</h3>
+        <p>Checkout flows, webhooks, and third-party APIs — insurance, logistics, or anything else your product needs to talk to.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>AI-powered features</h3>
+        <p>Document parsing, data extraction, and assistants built on top of your product's real data — not a chatbot bolted on.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <div class="contact-eyebrow">// let's build something</div>
+      <h2>Have a system that needs building?</h2>
+      <p>Tell me what you're trying to ship. If it involves a database, a payment, or an API — I've probably built something like it.</p>
+      <div class="contact-methods">
+        <a href="mailto:hello@sharjeel.dev" class="contact-method">✉ hello@sharjeel.dev</a>
+        <a href="https://wa.me/971543614221" class="contact-method ghost">💬 WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Sharjeel — Full-Stack Developer, UAE</span>
+    <span>Built with Next.js & Supabase</span>
+  </div>
+</footer>
+
+</body>
+</html>
