@@ -1,33 +1,298 @@
-Build/update the hero section of my landing page with this style:
+"use client";
 
-LAYOUT:
-- Full-width navbar at top: logo (left), nav links (Features, Pricing, Compare, 
-  About, Docs, Contact), search bar and CTA button (right)
-- Below navbar: large bold serif/display headline (e.g. "Where Commerce Becomes 
-  [Brand]") with the brand name in a gradient color (green-to-gold or teal-to-purple)
-- Subheading text below in smaller, lighter font
-- Two CTA buttons: primary (solid with glow border, e.g. "Start Selling") and 
-  secondary (text link, e.g. "Explore the Market ->")
-- Small "Scroll" indicator at bottom of hero
+import { motion } from "framer-motion";
 
-BACKGROUND EFFECT:
-- Dark background (near-black, #0a0a0a)
-- Large, flowing smoke/ink-like animated shapes in the background (teal-green, 
-  purple, and gold tones) that blend softly using mix-blend-mode: screen
-- Shapes should have a slow, organic drifting animation (not mouse-tracked this 
-  time — ambient/looping motion)
-- Add soft blur/glow (60-100px) so the smoke looks ethereal, not sharp
-- Optional: subtle particle/grain texture overlay for depth
+/**
+ * Hero — sharjeelhub.com
+ * Dark ambient hero: drifting smoke blobs (teal / purple / gold), grain overlay,
+ * Playfair Display display type, Framer Motion entrance sequence.
+ *
+ * Setup:
+ * 1. npm install framer-motion
+ * 2. Add fonts to app/layout.jsx (see bottom of this file for the snippet)
+ * 3. Drop <Hero /> at the top of your page
+ * 4. Tailwind config needs the two custom colors + keyframes below (or just
+ *    use the inline arbitrary values already in this file — no config edits required)
+ */
 
-TYPOGRAPHY:
-- Headline: bold serif font (like Playfair Display or similar) for premium feel
-- Body/nav: clean sans-serif (Inter, Geist, or similar)
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+  },
+};
 
-ANIMATION:
-- Use Framer Motion: fade-in + slight upward slide for headline/subheading on load
-- Smoke shapes animate continuously in background using CSS keyframes or 
-  Framer Motion looping animation
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
-Tech stack: [Next.js/React + Tailwind CSS + Framer Motion] — use whatever's 
-already in this project. Keep it performant, no heavy 3D libraries needed — 
-this can be done with layered blurred divs/SVGs + CSS animations.
+export default function Hero() {
+  return (
+    <section className="relative min-h-screen overflow-hidden bg-[#0a0a0a] text-[#f2f1ec] flex flex-col">
+      {/* ===== Ambient smoke field ===== */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <motion.div
+          className="absolute -top-[10%] -left-[12%] w-[52vw] h-[52vw] max-w-[720px] max-h-[720px] rounded-full opacity-55 blur-[80px] mix-blend-screen"
+          style={{
+            background:
+              "radial-gradient(circle at 35% 35%, #14b8a6, transparent 65%)",
+          }}
+          animate={{
+            x: ["0%", "8vw", "-5vw", "0%"],
+            y: ["0%", "9vh", "5vh", "0%"],
+            scale: [1, 1.08, 0.96, 1],
+          }}
+          transition={{ duration: 34, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-[20%] -right-[14%] w-[46vw] h-[46vw] max-w-[620px] max-h-[620px] rounded-full opacity-55 blur-[80px] mix-blend-screen"
+          style={{
+            background:
+              "radial-gradient(circle at 60% 40%, #8b5cf6, transparent 65%)",
+          }}
+          animate={{
+            x: ["0%", "-8vw", "4vw", "0%"],
+            y: ["0%", "-6vh", "8vh", "0%"],
+            scale: [1, 1.06, 0.94, 1],
+          }}
+          transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -bottom-[16%] left-[22%] w-[38vw] h-[38vw] max-w-[520px] max-h-[520px] rounded-full opacity-55 blur-[80px] mix-blend-screen"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 50%, #d4af37, transparent 68%)",
+          }}
+          animate={{
+            x: ["0%", "6vw", "0%"],
+            y: ["0%", "-7vh", "0%"],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 46, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      {/* ===== Grain overlay ===== */}
+      <svg
+        className="pointer-events-none absolute inset-0 z-[1] w-full h-full opacity-[0.05] mix-blend-overlay"
+        aria-hidden="true"
+      >
+        <filter id="heroGrain">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.85"
+            numOctaves="2"
+            stitchTiles="stitch"
+          />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#heroGrain)" />
+      </svg>
+
+      {/* ===== Vignette for legibility ===== */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(10,10,10,0.35) 60%, rgba(10,10,10,0.85) 100%)",
+        }}
+      />
+
+      {/* ===== Navbar ===== */}
+      <nav className="relative z-10">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-8 py-5 flex items-center justify-between gap-6">
+          <div className="font-serif-display font-semibold text-[19px] tracking-tight">
+            Sharjeel
+          </div>
+
+          <div className="hidden md:flex items-center gap-8 text-[13.5px] text-[#9a978d]">
+            <a href="#work" className="hover:text-[#f2f1ec] transition-colors">
+              Work
+            </a>
+            <a href="#stack" className="hover:text-[#f2f1ec] transition-colors">
+              Stack
+            </a>
+            <a
+              href="#services"
+              className="hover:text-[#f2f1ec] transition-colors"
+            >
+              Services
+            </a>
+            <a href="#about" className="hover:text-[#f2f1ec] transition-colors">
+              About
+            </a>
+            <a href="#docs" className="hover:text-[#f2f1ec] transition-colors">
+              Docs
+            </a>
+            <a
+              href="#contact"
+              className="hover:text-[#f2f1ec] transition-colors"
+            >
+              Contact
+            </a>
+          </div>
+
+          <div className="flex items-center gap-3.5">
+            <div className="hidden lg:flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-[12.5px] text-[#9a978d] min-w-[150px]">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="opacity-60 shrink-0"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              Search projects
+            </div>
+            <a
+              href="#contact"
+              className="text-[12.5px] font-semibold bg-[#f2f1ec] text-[#0a0a0a] px-[18px] py-[9px] rounded-full transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(20,184,166,0.25)]"
+            >
+              Start a Project
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* ===== Hero content ===== */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pb-28 pt-8"
+      >
+        <motion.div
+          variants={fadeUp}
+          className="text-[12px] tracking-[2.5px] uppercase text-[#9a978d] mb-6"
+        >
+          — Full-stack developer, UAE —
+        </motion.div>
+
+        <motion.h1
+          variants={fadeUp}
+          className="font-serif-display font-semibold leading-[1.08] tracking-tight max-w-[960px] mb-7"
+          style={{ fontSize: "clamp(38px, 6.4vw, 78px)" }}
+        >
+          Where ideas become{" "}
+          <span
+            className="italic bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(100deg, #14b8a6 0%, #8b5cf6 55%, #d4af37 100%)",
+            }}
+          >
+            shipped
+          </span>{" "}
+          product.
+        </motion.h1>
+
+        <motion.p
+          variants={fadeUp}
+          className="text-[17px] text-[#9a978d] max-w-[520px] leading-[1.7] mb-11"
+        >
+          I design, build, and deploy production SaaS platforms — multi-tenant
+          architecture, payment integrations, and AI-powered features — end to
+          end, one person, one system.
+        </motion.p>
+
+        <motion.div
+          variants={fadeUp}
+          className="flex items-center gap-8 flex-wrap justify-center"
+        >
+          <a
+            href="#contact"
+            className="relative text-[14px] font-semibold text-[#f2f1ec] px-[30px] py-[15px] rounded-full border border-teal-500/50 transition-all hover:-translate-y-0.5"
+            style={{
+              background:
+                "linear-gradient(120deg, rgba(20,184,166,0.18), rgba(139,92,246,0.18))",
+              boxShadow:
+                "0 0 0 1px rgba(139,92,246,0.15), 0 0 24px rgba(20,184,166,0.25)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow =
+                "0 0 0 1px rgba(139,92,246,0.3), 0 0 40px rgba(20,184,166,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow =
+                "0 0 0 1px rgba(139,92,246,0.15), 0 0 24px rgba(20,184,166,0.25)";
+            }}
+          >
+            Start a Project
+          </a>
+          <a
+            href="#work"
+            className="group inline-flex items-center gap-1.5 text-[14px] font-medium text-[#9a978d] hover:text-[#f2f1ec] transition-colors"
+          >
+            See What I've Shipped
+            <span className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* ===== Scroll indicator ===== */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9, duration: 0.9 }}
+        className="absolute bottom-9 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2.5 text-[10.5px] tracking-[2px] uppercase text-[#9a978d]"
+      >
+        <span>Scroll</span>
+        <motion.div
+          className="w-px h-[34px] bg-gradient-to-b from-[#9a978d] to-transparent"
+          animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.4, 1, 0.4] }}
+          style={{ transformOrigin: "top" }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
+    </section>
+  );
+}
+
+/* ============================================================
+   FONT SETUP — add to app/layout.jsx (Next.js App Router)
+   ============================================================
+
+import { Playfair_Display, Inter } from "next/font/google";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-serif-display",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+});
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <body className="font-sans">{children}</body>
+    </html>
+  );
+}
+
+Then in tailwind.config.js, extend your theme:
+
+  theme: {
+    extend: {
+      fontFamily: {
+        "serif-display": ["var(--font-serif-display)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
+    },
+  },
+
+============================================================ */
