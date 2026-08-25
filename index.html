@@ -1,298 +1,556 @@
-"use client";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sharjeel — Full-Stack & Website Developer | SaaS, Payments & API Integrations</title>
+<meta name="description" content="Full-stack and website developer based in the UAE. I design, build, and ship production SaaS platforms, business websites, payment integrations, and third-party APIs — for founders who need a working product, not a prototype." />
+<meta name="keywords" content="full-stack developer, website developer, website developer UAE, SaaS developer UAE, Next.js developer, Supabase developer, freelance developer Dubai, API integration developer, multi-tenant SaaS architecture" />
+<meta name="author" content="Sharjeel" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://sharjeelhub.com/" />
 
-import { motion } from "framer-motion";
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sharjeelhub.com/" />
+<meta property="og:title" content="Sharjeel — Full-Stack & Website Developer | SaaS, Payments & API Integrations" />
+<meta property="og:description" content="Full-stack and website developer based in the UAE. I design, build, and ship production SaaS platforms, business websites, and payment integrations." />
+<meta property="og:image" content="https://sharjeelhub.com/logo.png" />
+<meta property="og:site_name" content="Sharjeel — Full-Stack Developer" />
 
-/**
- * Hero — sharjeelhub.com
- * Dark ambient hero: drifting smoke blobs (teal / purple / gold), grain overlay,
- * Playfair Display display type, Framer Motion entrance sequence.
- *
- * Setup:
- * 1. npm install framer-motion
- * 2. Add fonts to app/layout.jsx (see bottom of this file for the snippet)
- * 3. Drop <Hero /> at the top of your page
- * 4. Tailwind config needs the two custom colors + keyframes below (or just
- *    use the inline arbitrary values already in this file — no config edits required)
- */
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://sharjeelhub.com/" />
+<meta name="twitter:title" content="Sharjeel — Full-Stack & Website Developer | SaaS, Payments & API Integrations" />
+<meta name="twitter:description" content="Full-stack and website developer based in the UAE. I design, build, and ship production SaaS platforms, business websites, and payment integrations." />
+<meta name="twitter:image" content="https://sharjeelhub.com/logo.png" />
 
-const container = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-  },
-};
+<link rel="icon" type="image/png" href="/logo.png" />
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-  },
-};
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sharjeel",
+  "url": "https://sharjeelhub.com",
+  "image": "https://sharjeelhub.com/logo.png",
+  "jobTitle": "Full-Stack Developer",
+  "description": "Full-stack developer based in the UAE building production SaaS platforms, payment integrations, and API-driven systems.",
+  "address": { "@type": "PostalAddress", "addressCountry": "AE" },
+  "email": "hello@sharjeelhub.com",
+  "knowsAbout": ["Next.js", "Supabase", "SaaS Architecture", "API Integration", "Payment Gateways", "Multi-tenant Systems"]
+}
+</script>
 
-export default function Hero() {
-  return (
-    <section className="relative min-h-screen overflow-hidden bg-[#0a0a0a] text-[#f2f1ec] flex flex-col">
-      {/* ===== Ambient smoke field ===== */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-[10%] -left-[12%] w-[52vw] h-[52vw] max-w-[720px] max-h-[720px] rounded-full opacity-55 blur-[80px] mix-blend-screen"
-          style={{
-            background:
-              "radial-gradient(circle at 35% 35%, #14b8a6, transparent 65%)",
-          }}
-          animate={{
-            x: ["0%", "8vw", "-5vw", "0%"],
-            y: ["0%", "9vh", "5vh", "0%"],
-            scale: [1, 1.08, 0.96, 1],
-          }}
-          transition={{ duration: 34, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-[20%] -right-[14%] w-[46vw] h-[46vw] max-w-[620px] max-h-[620px] rounded-full opacity-55 blur-[80px] mix-blend-screen"
-          style={{
-            background:
-              "radial-gradient(circle at 60% 40%, #8b5cf6, transparent 65%)",
-          }}
-          animate={{
-            x: ["0%", "-8vw", "4vw", "0%"],
-            y: ["0%", "-6vh", "8vh", "0%"],
-            scale: [1, 1.06, 0.94, 1],
-          }}
-          transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute -bottom-[16%] left-[22%] w-[38vw] h-[38vw] max-w-[520px] max-h-[520px] rounded-full opacity-55 blur-[80px] mix-blend-screen"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 50%, #d4af37, transparent 68%)",
-          }}
-          animate={{
-            x: ["0%", "6vw", "0%"],
-            y: ["0%", "-7vh", "0%"],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 46, repeat: Infinity, ease: "easeInOut" }}
-        />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F6F2;
+    --paper-2: #FFFFFF;
+    --ink: #14171C;
+    --muted: #6B7280;
+    --muted-2: #9A9F8C;
+    --line: #E4E2DC;
+    --indigo: #4338CA;
+    --indigo-dim: #EEF0FD;
+    --amber: #B4790A;
+    --amber-dim: #FBF1DD;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+    --serif: 'Playfair Display', Georgia, serif;
+
+    --hero-bg: #0a0a0a;
+    --teal: #14b8a6;
+    --purple: #8b5cf6;
+    --gold: #d4af37;
+    --hero-text: #f2f1ec;
+    --hero-muted: #9a978d;
+    --hero-line: rgba(242,241,236,0.10);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  ::selection { background: var(--indigo); color: #fff; }
+  :focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+
+  /* ============================================================
+     HERO (new) — dark ambient smoke section, full-bleed
+     ============================================================ */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;background:var(--hero-bg);color:var(--hero-text);overflow:hidden;}
+
+  .smoke-field{position:absolute;inset:0;overflow:hidden;z-index:0;}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);mix-blend-mode:screen;opacity:0.55;will-change:transform;}
+  .blob-teal{
+    width:52vw;height:52vw;max-width:720px;max-height:720px;
+    background:radial-gradient(circle at 35% 35%, var(--teal), transparent 65%);
+    top:-10%;left:-12%;
+    animation:driftA 34s ease-in-out infinite;
+  }
+  .blob-purple{
+    width:46vw;height:46vw;max-width:620px;max-height:620px;
+    background:radial-gradient(circle at 60% 40%, var(--purple), transparent 65%);
+    top:20%;right:-14%;
+    animation:driftB 40s ease-in-out infinite;
+  }
+  .blob-gold{
+    width:38vw;height:38vw;max-width:520px;max-height:520px;
+    background:radial-gradient(circle at 50% 50%, var(--gold), transparent 68%);
+    bottom:-16%;left:22%;
+    animation:driftC 46s ease-in-out infinite;
+  }
+  @keyframes driftA{
+    0%{transform:translate(0,0) scale(1);}
+    33%{transform:translate(6vw,8vh) scale(1.08);}
+    66%{transform:translate(-4vw,4vh) scale(0.96);}
+    100%{transform:translate(0,0) scale(1);}
+  }
+  @keyframes driftB{
+    0%{transform:translate(0,0) scale(1);}
+    40%{transform:translate(-7vw,-5vh) scale(1.06);}
+    75%{transform:translate(3vw,7vh) scale(0.94);}
+    100%{transform:translate(0,0) scale(1);}
+  }
+  @keyframes driftC{
+    0%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(5vw,-6vh) scale(1.1);}
+    100%{transform:translate(0,0) scale(1);}
+  }
+
+  .grain{position:absolute;inset:0;z-index:1;opacity:0.05;pointer-events:none;mix-blend-mode:overlay;}
+  .vignette{position:absolute;inset:0;z-index:1;
+    background:radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(10,10,10,0.35) 60%, rgba(10,10,10,0.85) 100%);
+    pointer-events:none;
+  }
+
+  .hero-nav{position:relative;z-index:10;}
+  .hero-nav-inner{
+    max-width:1280px;margin:0 auto;padding:22px 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .hero-logo{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:0.3px;}
+  .hero-links{display:flex;gap:30px;font-size:13.5px;color:var(--hero-muted);}
+  .hero-links a{transition:color 0.15s;}
+  .hero-links a:hover{color:var(--hero-text);}
+  .hero-nav-right{display:flex;align-items:center;gap:14px;}
+  .hero-search{
+    display:flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.04);border:1px solid var(--hero-line);
+    border-radius:999px;padding:8px 14px;font-size:12.5px;color:var(--hero-muted);
+    min-width:150px;
+  }
+  .hero-search svg{flex-shrink:0;opacity:0.6;}
+  .hero-nav-cta{
+    font-size:12.5px;font-weight:600;
+    background:var(--hero-text);color:var(--hero-bg);
+    padding:9px 18px;border-radius:999px;
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .hero-nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(20,184,166,0.25);}
+  @media (max-width:900px){ .hero-links{display:none;} .hero-search{display:none;} }
+
+  .hero-content{
+    position:relative;z-index:5;flex:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:40px 24px 120px;
+  }
+  .hero-eyebrow{
+    font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--hero-muted);
+    margin-bottom:26px;opacity:0;
+    animation:fadeUp 0.9s ease-out 0.1s forwards;
+  }
+  .hero-eyebrow::before{content:'— ';}
+  .hero-eyebrow::after{content:' —';}
+
+  .hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(38px, 6.4vw, 78px);
+    line-height:1.08;letter-spacing:-1px;
+    max-width:960px;margin-bottom:28px;
+    opacity:0;transform:translateY(18px);
+    animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
+  }
+  .grad{
+    background:linear-gradient(100deg, var(--teal) 0%, var(--purple) 55%, var(--gold) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-style:italic;
+  }
+
+  .hero-sub{
+    font-size:17px;font-weight:400;color:var(--hero-muted);
+    max-width:520px;line-height:1.7;margin-bottom:44px;
+    opacity:0;transform:translateY(14px);
+    animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
+  }
+
+  .hero-ctas{
+    display:flex;align-items:center;gap:30px;flex-wrap:wrap;justify-content:center;
+    opacity:0;transform:translateY(12px);
+    animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.55s forwards;
+  }
+  .hero-btn-primary{
+    position:relative;font-size:14px;font-weight:600;
+    background:linear-gradient(120deg, rgba(20,184,166,0.18), rgba(139,92,246,0.18));
+    color:var(--hero-text);
+    padding:15px 30px;border-radius:999px;
+    border:1px solid rgba(20,184,166,0.5);
+    box-shadow:0 0 0 1px rgba(139,92,246,0.15), 0 0 24px rgba(20,184,166,0.25);
+    transition:box-shadow 0.25s, transform 0.2s;
+  }
+  .hero-btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 1px rgba(139,92,246,0.3), 0 0 40px rgba(20,184,166,0.4);
+  }
+  .hero-btn-secondary{
+    font-size:14px;font-weight:500;color:var(--hero-muted);
+    display:inline-flex;align-items:center;gap:6px;
+    transition:color 0.15s, gap 0.2s;
+  }
+  .hero-btn-secondary:hover{color:var(--hero-text);gap:10px;}
+
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+  .scroll-hint{
+    position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+    z-index:5;display:flex;flex-direction:column;align-items:center;gap:10px;
+    font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--hero-muted);
+    opacity:0;animation:fadeUp 0.9s ease-out 0.9s forwards;
+  }
+  .scroll-line{width:1px;height:34px;background:linear-gradient(var(--hero-muted), transparent);
+    animation:scrollMove 2s ease-in-out infinite;
+  }
+  @keyframes scrollMove{
+    0%{transform:scaleY(0.3);transform-origin:top;opacity:0.4;}
+    50%{transform:scaleY(1);transform-origin:top;opacity:1;}
+    100%{transform:scaleY(0.3);transform-origin:top;opacity:0.4;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .blob{animation:none !important;}
+    .scroll-line{animation:none !important;}
+    .hero h1,.hero-sub,.hero-ctas,.hero-eyebrow,.scroll-hint{animation:fadeUp 0.01s forwards !important;}
+  }
+
+  /* ============================================================
+     REST OF SITE (existing sections, unchanged)
+     ============================================================ */
+
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--amber);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before { content: ''; width: 16px; height: 1.5px; background: var(--amber); }
+  .section-title { font-family: var(--mono); font-weight: 700; font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.5px; margin-bottom: 14px; }
+  .section-sub { color: var(--muted); font-size: 15px; max-width: 560px; margin-bottom: 40px; line-height: 1.6; }
+
+  .changelog { display: flex; flex-direction: column; gap: 20px; }
+  .release {
+    background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 30px; transition: border-color 0.15s, transform 0.15s;
+  }
+  .release:hover { border-color: #CBD0DC; transform: translateY(-2px); }
+  .release-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px; flex-wrap: wrap; }
+  .release-version {
+    font-family: var(--mono); font-size: 12.5px; font-weight: 700; color: var(--indigo);
+    background: var(--indigo-dim); padding: 4px 10px; border-radius: 6px; flex-shrink: 0;
+  }
+  .release-status {
+    font-family: var(--mono); font-size: 11px; font-weight: 600; color: #15803D;
+    background: #EAFBF1; padding: 4px 10px; border-radius: 6px;
+  }
+  .release-title { font-family: var(--mono); font-weight: 700; font-size: 19px; margin: 12px 0 8px; }
+  .release-desc { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin-bottom: 18px; max-width: 620px; }
+  .release-log { list-style: none; margin-bottom: 18px; }
+  .release-log li {
+    font-size: 13.5px; color: var(--ink); padding: 6px 0 6px 22px; position: relative; line-height: 1.5;
+  }
+  .release-log li::before {
+    content: '+'; position: absolute; left: 0; top: 6px;
+    font-family: var(--mono); color: var(--amber); font-weight: 700;
+  }
+  .release-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-pill {
+    font-family: var(--mono); font-size: 11.5px; color: var(--muted);
+    background: var(--paper); border: 1px solid var(--line); padding: 4px 10px; border-radius: 6px;
+  }
+
+  .arch-stack { display: flex; flex-direction: column; gap: 2px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .arch-layer {
+    background: var(--paper-2); padding: 20px 24px;
+    display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: center;
+  }
+  .arch-layer + .arch-layer { border-top: 1px solid var(--line); }
+  .arch-label { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.5px; }
+  .arch-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .arch-item { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ink); background: var(--paper); border: 1px solid var(--line); padding: 6px 12px; border-radius: 7px; }
+  @media (max-width: 640px) { .arch-layer { grid-template-columns: 1fr; gap: 10px; } }
+
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .service-card { background: var(--paper-2); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  .service-num { font-family: var(--mono); font-size: 11px; color: var(--amber); font-weight: 700; margin-bottom: 12px; }
+  .service-card h3 { font-family: var(--mono); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .service-card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+
+  .contact-box {
+    background: var(--ink); color: var(--paper); border-radius: 16px; padding: 48px 40px;
+    position: relative; overflow: hidden;
+  }
+  .contact-box::before {
+    content: ''; position: absolute; top: -80px; right: -80px; width: 220px; height: 220px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(67,56,202,0.35), transparent 70%);
+  }
+  .contact-eyebrow { font-family: var(--mono); font-size: 12px; color: #A5B4FC; margin-bottom: 14px; letter-spacing: 0.5px; }
+  .contact-box h2 { font-family: var(--mono); font-size: clamp(22px, 3.2vw, 30px); font-weight: 700; margin-bottom: 14px; letter-spacing: -0.5px; }
+  .contact-box p { color: #A0A6B5; font-size: 15px; max-width: 460px; margin-bottom: 30px; line-height: 1.6; }
+  .contact-methods { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .contact-method {
+    font-family: var(--mono); font-size: 13.5px; font-weight: 600;
+    background: #fff; color: var(--ink); padding: 13px 22px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 8px; transition: transform 0.15s;
+  }
+  .contact-method:hover { transform: translateY(-2px); }
+  .contact-method.ghost { background: transparent; color: #fff; border: 1.5px solid #363B47; }
+
+  footer { padding: 32px 0; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-inner span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="smoke-field">
+    <div class="blob blob-teal"></div>
+    <div class="blob blob-purple"></div>
+    <div class="blob blob-gold"></div>
+  </div>
+  <svg class="grain" width="100%" height="100%">
+    <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#noise)"/>
+  </svg>
+  <div class="vignette"></div>
+
+  <nav class="hero-nav">
+    <div class="hero-nav-inner">
+      <div class="hero-logo">Sharjeel</div>
+      <div class="hero-links">
+        <a href="#work">Work</a>
+        <a href="#stack">Stack</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="hero-nav-right">
+        <div class="hero-search">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Search projects
+        </div>
+        <a href="#contact" class="hero-nav-cta">Start a Project</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Full-stack developer, UAE</div>
+    <h1>Where ideas become<br><span class="grad">shipped</span> product.</h1>
+    <p class="hero-sub">I design, build, and deploy production SaaS platforms — multi-tenant architecture, payment integrations, and AI-powered features — end to end, one person, one system.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="hero-btn-primary">Start a Project</a>
+      <a href="#work" class="hero-btn-secondary">See What I've Shipped →</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- WORK / CHANGELOG -->
+  <section id="work">
+    <div class="eyebrow">Shipped work</div>
+    <h2 class="section-title">A changelog, not a portfolio.</h2>
+    <p class="section-sub">Three production systems, built end-to-end — architecture, integrations, and deployment. Real businesses, real payments, real users.</p>
+
+    <div class="changelog">
+
+      <div class="release">
+        <div class="release-head">
+          <span class="release-version">v1.0</span>
+          <span class="release-status">● live in production</span>
+        </div>
+        <div class="release-title">Travel Advisers Visa Portal</div>
+        <p class="release-desc">A customer-facing visa application platform for a UAE travel agency — document upload, application tracking, payment, and travel insurance in one flow.</p>
+        <ul class="release-log">
+          <li>Built a 4-step application flow with a live status timeline customers can track</li>
+          <li>Integrated hosted checkout for card payments, with automatic invoice generation on success</li>
+          <li>Connected a third-party insurance provider's API for real-time quotes and instant policy issuance</li>
+          <li>Wired up transactional email for receipts, status updates, and policy documents</li>
+        </ul>
+        <div class="release-stack">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">Payment Gateway API</span>
+          <span class="stack-pill">Resend</span>
+        </div>
       </div>
 
-      {/* ===== Grain overlay ===== */}
-      <svg
-        className="pointer-events-none absolute inset-0 z-[1] w-full h-full opacity-[0.05] mix-blend-overlay"
-        aria-hidden="true"
-      >
-        <filter id="heroGrain">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.85"
-            numOctaves="2"
-            stitchTiles="stitch"
-          />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#heroGrain)" />
-      </svg>
-
-      {/* ===== Vignette for legibility ===== */}
-      <div
-        className="pointer-events-none absolute inset-0 z-[1]"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(10,10,10,0.35) 60%, rgba(10,10,10,0.85) 100%)",
-        }}
-      />
-
-      {/* ===== Navbar ===== */}
-      <nav className="relative z-10">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-8 py-5 flex items-center justify-between gap-6">
-          <div className="font-serif-display font-semibold text-[19px] tracking-tight">
-            Sharjeel
-          </div>
-
-          <div className="hidden md:flex items-center gap-8 text-[13.5px] text-[#9a978d]">
-            <a href="#work" className="hover:text-[#f2f1ec] transition-colors">
-              Work
-            </a>
-            <a href="#stack" className="hover:text-[#f2f1ec] transition-colors">
-              Stack
-            </a>
-            <a
-              href="#services"
-              className="hover:text-[#f2f1ec] transition-colors"
-            >
-              Services
-            </a>
-            <a href="#about" className="hover:text-[#f2f1ec] transition-colors">
-              About
-            </a>
-            <a href="#docs" className="hover:text-[#f2f1ec] transition-colors">
-              Docs
-            </a>
-            <a
-              href="#contact"
-              className="hover:text-[#f2f1ec] transition-colors"
-            >
-              Contact
-            </a>
-          </div>
-
-          <div className="flex items-center gap-3.5">
-            <div className="hidden lg:flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-[12.5px] text-[#9a978d] min-w-[150px]">
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="opacity-60 shrink-0"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              Search projects
-            </div>
-            <a
-              href="#contact"
-              className="text-[12.5px] font-semibold bg-[#f2f1ec] text-[#0a0a0a] px-[18px] py-[9px] rounded-full transition-all hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(20,184,166,0.25)]"
-            >
-              Start a Project
-            </a>
-          </div>
+      <div class="release">
+        <div class="release-head">
+          <span class="release-version">v1.1</span>
+          <span class="release-status">● live in production</span>
         </div>
-      </nav>
+        <div class="release-title">LetrexAI</div>
+        <p class="release-desc">A multi-tenant accounting SaaS purpose-built for travel agencies — VAT-ready invoicing, credit card tracking, and an AI that reads bank statements so no one has to type them in by hand.</p>
+        <ul class="release-log">
+          <li>Designed a multi-tenant architecture with organization-level data isolation and row-level security</li>
+          <li>Built an AI-powered bank statement parser that turns PDFs and screenshots into categorized transactions</li>
+          <li>Shipped role-based access control separating admin and staff permissions across every page</li>
+          <li>Integrated subscription billing with plan-based feature gating</li>
+        </ul>
+        <div class="release-stack">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">Stripe</span>
+          <span class="stack-pill">Claude API</span>
+        </div>
+      </div>
 
-      {/* ===== Hero content ===== */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 pb-28 pt-8"
-      >
-        <motion.div
-          variants={fadeUp}
-          className="text-[12px] tracking-[2.5px] uppercase text-[#9a978d] mb-6"
-        >
-          — Full-stack developer, UAE —
-        </motion.div>
+      <div class="release">
+        <div class="release-head">
+          <span class="release-version">v1.2</span>
+          <span class="release-status">● live in production</span>
+        </div>
+        <div class="release-title">Unfiltered</div>
+        <p class="release-desc">An invite-only dating app with real-time chat, moderation tooling, and a released Android build — a different domain, same end-to-end build.</p>
+        <ul class="release-log">
+          <li>Built real-time messaging with blocking, rewind, and profile-viewing from chat</li>
+          <li>Shipped admin moderation tools — suspend, reject, and full account-deletion with cascade cleanup</li>
+          <li>Packaged the web app as a PWA and released it to Google Play Closed Testing</li>
+          <li>Automated a 60-day trial period for new approved users</li>
+        </ul>
+        <div class="release-stack">
+          <span class="stack-pill">Next.js</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">PWA</span>
+          <span class="stack-pill">Android</span>
+        </div>
+      </div>
 
-        <motion.h1
-          variants={fadeUp}
-          className="font-serif-display font-semibold leading-[1.08] tracking-tight max-w-[960px] mb-7"
-          style={{ fontSize: "clamp(38px, 6.4vw, 78px)" }}
-        >
-          Where ideas become{" "}
-          <span
-            className="italic bg-clip-text text-transparent"
-            style={{
-              backgroundImage:
-                "linear-gradient(100deg, #14b8a6 0%, #8b5cf6 55%, #d4af37 100%)",
-            }}
-          >
-            shipped
-          </span>{" "}
-          product.
-        </motion.h1>
+    </div>
+  </section>
 
-        <motion.p
-          variants={fadeUp}
-          className="text-[17px] text-[#9a978d] max-w-[520px] leading-[1.7] mb-11"
-        >
-          I design, build, and deploy production SaaS platforms — multi-tenant
-          architecture, payment integrations, and AI-powered features — end to
-          end, one person, one system.
-        </motion.p>
+  <!-- STACK / ARCHITECTURE -->
+  <section id="stack">
+    <div class="eyebrow">How it's built</div>
+    <h2 class="section-title">The stack I ship with.</h2>
+    <p class="section-sub">Every layer, one person. No handoffs between a "frontend person" and a "backend person" — I own the whole system, so nothing gets lost in translation.</p>
 
-        <motion.div
-          variants={fadeUp}
-          className="flex items-center gap-8 flex-wrap justify-center"
-        >
-          <a
-            href="#contact"
-            className="relative text-[14px] font-semibold text-[#f2f1ec] px-[30px] py-[15px] rounded-full border border-teal-500/50 transition-all hover:-translate-y-0.5"
-            style={{
-              background:
-                "linear-gradient(120deg, rgba(20,184,166,0.18), rgba(139,92,246,0.18))",
-              boxShadow:
-                "0 0 0 1px rgba(139,92,246,0.15), 0 0 24px rgba(20,184,166,0.25)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow =
-                "0 0 0 1px rgba(139,92,246,0.3), 0 0 40px rgba(20,184,166,0.4)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow =
-                "0 0 0 1px rgba(139,92,246,0.15), 0 0 24px rgba(20,184,166,0.25)";
-            }}
-          >
-            Start a Project
-          </a>
-          <a
-            href="#work"
-            className="group inline-flex items-center gap-1.5 text-[14px] font-medium text-[#9a978d] hover:text-[#f2f1ec] transition-colors"
-          >
-            See What I've Shipped
-            <span className="transition-transform group-hover:translate-x-1">
-              →
-            </span>
-          </a>
-        </motion.div>
-      </motion.div>
+    <div class="arch-stack">
+      <div class="arch-layer">
+        <div class="arch-label">Frontend</div>
+        <div class="arch-items">
+          <span class="arch-item">Next.js</span>
+          <span class="arch-item">React</span>
+          <span class="arch-item">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Backend</div>
+        <div class="arch-items">
+          <span class="arch-item">API Routes</span>
+          <span class="arch-item">Server Actions</span>
+          <span class="arch-item">Node.js</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Database</div>
+        <div class="arch-items">
+          <span class="arch-item">Supabase / Postgres</span>
+          <span class="arch-item">Row-Level Security</span>
+          <span class="arch-item">Storage</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Integrations</div>
+        <div class="arch-items">
+          <span class="arch-item">Payment Gateways</span>
+          <span class="arch-item">Transactional Email</span>
+          <span class="arch-item">AI / LLM APIs</span>
+          <span class="arch-item">Third-Party REST APIs</span>
+        </div>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-label">Infra</div>
+        <div class="arch-items">
+          <span class="arch-item">Vercel</span>
+          <span class="arch-item">GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      {/* ===== Scroll indicator ===== */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.9 }}
-        className="absolute bottom-9 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2.5 text-[10.5px] tracking-[2px] uppercase text-[#9a978d]"
-      >
-        <span>Scroll</span>
-        <motion.div
-          className="w-px h-[34px] bg-gradient-to-b from-[#9a978d] to-transparent"
-          animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.4, 1, 0.4] }}
-          style={{ transformOrigin: "top" }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
-    </section>
-  );
-}
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="eyebrow">What I take on</div>
+    <h2 class="section-title">Where I'm most useful.</h2>
+    <p class="section-sub">Best fit for founders who have a real business problem and need working software, fast — not a mockup to hand off to someone else.</p>
 
-/* ============================================================
-   FONT SETUP — add to app/layout.jsx (Next.js App Router)
-   ============================================================
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Full-stack SaaS builds</h3>
+        <p>From a blank repo to a live product — data model, auth, UI, and deployment, built as one coherent system.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Multi-tenant architecture</h3>
+        <p>Organizations, roles, and permissions done properly — data isolation you can trust as customers scale up.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Payment & API integrations</h3>
+        <p>Checkout flows, webhooks, and third-party APIs — insurance, logistics, or anything else your product needs to talk to.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>AI-powered features</h3>
+        <p>Document parsing, data extraction, and assistants built on top of your product's real data — not a chatbot bolted on.</p>
+      </div>
+    </div>
+  </section>
 
-import { Playfair_Display, Inter } from "next/font/google";
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <div class="contact-eyebrow">// let's build something</div>
+      <h2>Have a system that needs building?</h2>
+      <p>Tell me what you're trying to ship. If it involves a database, a payment, or an API — I've probably built something like it.</p>
+      <div class="contact-methods">
+        <a href="mailto:hello@sharjeelhub.com" class="contact-method">✉ hello@sharjeelhub.com</a>
+        <a href="https://wa.me/971543614221" class="contact-method ghost">💬 WhatsApp</a>
+      </div>
+    </div>
+  </section>
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-serif-display",
-});
+</div>
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-sans",
-});
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Sharjeel — Full-Stack Developer, UAE</span>
+  </div>
+</footer>
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans">{children}</body>
-    </html>
-  );
-}
-
-Then in tailwind.config.js, extend your theme:
-
-  theme: {
-    extend: {
-      fontFamily: {
-        "serif-display": ["var(--font-serif-display)", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-      },
-    },
-  },
-
-============================================================ */
+</body>
+</html>
