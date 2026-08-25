@@ -134,7 +134,8 @@
     max-width:1280px;margin:0 auto;padding:22px 32px;
     display:flex;align-items:center;justify-content:space-between;gap:24px;
   }
-  .hero-logo{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:0.3px;}
+  .hero-logo{display:flex;align-items:center;}
+  .hero-logo img{height:52px;width:auto;display:block;}
   .hero-links{display:flex;gap:30px;font-size:13.5px;color:var(--hero-muted);}
   .hero-links a{transition:color 0.15s;}
   .hero-links a:hover{color:var(--hero-text);}
@@ -342,7 +343,7 @@
 
   <nav class="hero-nav">
     <div class="hero-nav-inner">
-      <div class="hero-logo">Sharjeel</div>
+      <div class="hero-logo"><img src="logo.png" alt="Sharjeel" /></div>
       <div class="hero-links">
         <a href="#work">Work</a>
         <a href="#stack">Stack</a>
